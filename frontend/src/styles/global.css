@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg-base: #e4e8f4;
+    --bg-surface: rgba(246, 247, 252, 0.78);
+    --bg-card: rgba(244, 246, 253, 0.85);
+    --bg-muted: rgba(203, 213, 225, 0.6);
+    --border-soft: rgba(15, 23, 42, 0.12);
+    --border-strong: rgba(15, 23, 42, 0.2);
+    --text-primary: #0e1526;
+    --text-secondary: #3d4b63;
+    --shadow-soft: 0 25px 65px rgba(15, 23, 42, 0.12);
+    --body-gradient: radial-gradient(circle at 18% 20%, rgba(37, 99, 235, 0.18), transparent 38%),
+      radial-gradient(circle at 78% 0%, rgba(14, 165, 233, 0.2), transparent 34%),
+      radial-gradient(circle at 12% 78%, rgba(99, 102, 241, 0.18), transparent 32%),
+      linear-gradient(135deg, #dfe6ff, #ecf1ff 45%, #d6ecfb);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --bg-base: #020617;
+    --bg-surface: rgba(2, 6, 23, 0.85);
+    --bg-card: rgba(15, 23, 42, 0.82);
+    --bg-muted: rgba(15, 23, 42, 0.65);
+    --border-soft: rgba(255, 255, 255, 0.06);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --text-primary: #f8fafc;
+    --text-secondary: rgba(226, 232, 240, 0.72);
+    --shadow-soft: 0 35px 120px rgba(2, 6, 23, 0.55);
+    --body-gradient: radial-gradient(circle at top, rgba(37, 99, 235, 0.35), transparent 45%),
+      radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.25), transparent 35%),
+      radial-gradient(circle at 80% 0%, rgba(124, 58, 237, 0.25), transparent 30%),
+      linear-gradient(135deg, #020617, #0f172a 40%, #020617);
+  }
+
+  body {
+    @apply min-h-screen font-inter antialiased;
+    background-color: var(--bg-base);
+    background-image: var(--body-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+}
+
+@layer components {
+  .glass-card {
+    border: 1px solid var(--border-soft);
+    background-color: var(--bg-card);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(24px);
+    color: inherit;
+  }
+
+  .dark .glass-card {
+    background-color: rgba(15, 23, 42, 0.78);
+    border-color: var(--border-strong);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent;
+  }
+
+  .neural-wave {
+    position: absolute;
+    inset: -40% -10% auto -10%;
+    height: 65vh;
+    background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.25), transparent 45%),
+      radial-gradient(circle at 80% 30%, rgba(124, 58, 237, 0.25), transparent 50%);
+    filter: blur(60px);
+    z-index: -2;
+  }
+
+  .neural-lines {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.04) 0px,
+        rgba(255, 255, 255, 0.04) 2px,
+        transparent 2px,
+        transparent 12px
+      ),
+      repeating-linear-gradient(
+        60deg,
+        rgba(14, 165, 233, 0.08) 0px,
+        rgba(14, 165, 233, 0.08) 1px,
+        transparent 1px,
+        transparent 14px
+      );
+    opacity: 0.25;
+    z-index: -3;
+  }
+
+  .neural-particles {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.35) 2px, transparent 2px);
+    background-size: 120px 120px;
+    filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.3));
+    opacity: 0.6;
+    z-index: -1;
+  }
+
+  .neural-glow {
+    position: absolute;
+    inset: 10% 8% auto 8%;
+    height: 55vh;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.35), rgba(99, 102, 241, 0));
+    filter: blur(50px);
+    z-index: -2;
+  }
+
+  .neural-canvas {
+    position: absolute;
+    inset: 8% 0 auto 0;
+    width: 100%;
+    height: 26rem;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0.8;
+    z-index: -2;
+  }
+
+  .neural-orbit {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: -1;
+  }
+
+  .orbit-ring {
+    position: absolute;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 9999px;
+    filter: drop-shadow(0 0 16px rgba(14, 165, 233, 0.55));
+  }
+
+  .orbit-dot {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #38bdf8, #a855f7);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.85);
+    transform: translateX(-50%) scale(1);
+    animation: pulse-dot 2.6s ease-in-out infinite;
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) scale(0.8);
+    opacity: 0.6;
+  }
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background-color: rgba(37, 99, 235, 0.55);
+}
+
+:root:not(.dark) *::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 23, 42, 0.35);
+}

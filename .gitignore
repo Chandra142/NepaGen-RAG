@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+venv/
+env/
+.venv/
+ENV/
+*.env
+
+# React / Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Large RAG Data (suggested to store elsewhere or use LFS)
+backend/vectorstore/
+*.ipynb
+*.csv
+*.txt
+*.pkl
+**/nepali_vectorstore_*/
+**/checkpoints/
+**/ArthaBanijya/
+**/Bichar/
+**/Desh/
+**/Khelkud/
+**/Manoranjan/
+**/Prabas/
+**/Sahitya/
+**/SuchanaPrabidhi/
+**/Swasthya/
+**/Viswa/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store

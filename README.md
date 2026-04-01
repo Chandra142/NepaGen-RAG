@@ -47,10 +47,14 @@ NepaGen AI is a state-of-the-art Nepali language assistant that combines the pow
     GOOGLE_API_KEY=YOUR_GEMINI_API_KEY
     FAISS_INDEX_PATH=./vectorstore  # path to your FAISS index folder
     ```
-4.  **Start the server**:
+5.  **Start the server**:
     ```bash
-    uvicorn main:app --reload --port 8000
+    uvicorn main:app --reload --port 8001
     ```
+
+> [!NOTE]
+> The first startup will download the **BAAI/bge-m3** model (approx. 2GB). This may take several minutes depending on your internet speed. Subsequent starts will be almost instantaneous.
+
 
 ### 2. Frontend (React)
 1.  **Navigate** to `frontend/`.
